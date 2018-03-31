@@ -1,0 +1,90 @@
+# Project 8 - Pentesting Live Targets
+
+Time spent:  20 hours spent in total
+
+> Objective:Get hands-on experience with some of the most common secuirty exploits through an applied hacking exercise
+
+## Pentesting Report
+
+1. Username Enumeration
+  - [ ] Summary: 
+    - Vulnerability types: Green website 
+    - Tested in version: N/A
+    - Fixed in version: N/A
+    - [ ] Steps to recreate: 
+Logging into the the staff portion of the site inputting the incorrect username/password renders "Log in was unsuccessful." When inputting the correct username/incorrect password renders "Log in was unsuccessful." in bolded letters. The bolding of the letters tips off the hacker that the username was correct or that an account exists.
+  - [ ] Affected source code: 
+    - [Link 1] https://35.226.125.59/green/public/staff/login.php
+
+2. Insecure Direct Objext Reference
+  - [ ] Summary: 
+    - Vulnerability types: Red website
+    - Tested in version: N/A
+    - Fixed in version: N/A
+    - [ ] Steps to recreate: 
+When on the public facing side of the website in the salepeople's page, you can change the ID number to "id=10" and find unpublished data there. 
+  - [ ] Affected source code:
+    - [Link 1] https://35.226.125.59/red/public/salesperson.php?id=10
+
+3. SQL Injection
+  - [ ] Summary: 
+    - Vulnerability types: Blue website
+    - Tested in version: N/A
+    - Fixed in version: N/A
+  - [ ] Steps to recreate: 
+When logged into the public portion of the site, in the salesperson page, a SQL injection can be inputted into the "id=" portion of the URL. The SQL code "' OR SLEEP(10)=0--'" triggers a reaction proving an ability to exploit. 
+  - [ ] Affected source code:
+    - [Link 1]
+https://35.226.125.59/blue/public/salesperson.php?id=' OR SLEEP(10)=0--'
+
+4. Cross-Site Scripting
+  
+- [ ] Summary: 
+    - Vulnerability types: Green website
+    - Tested in version: N/A
+    - Fixed in version: N/A
+  - [ ] Steps to recreate: 
+Inputting XSS code into the feedback section of the public portion of the site allows for an expolit to pop up when the admin navigates to the feedback portion of the site. The XSS code used is "<script>alert('Courtney found the XSS!');</script>"
+  - [ ] Affected source code:
+    - [Link 1]  https://35.226.125.59/green/public/contact.php
+
+5. Cross-Site Request Forgery
+  
+- [ ] Summary: 
+    - Vulnerability types: Red website
+    - Tested in version: N/A
+    - Fixed in version: N/A
+  - [ ] Steps to recreate:
+The admin side of red doesn't require a CSRF token to add countries or people to the backend.So you need to make a form, that is hidden and can be triggered by a red admin.
+  - [ ] Affected source code:
+    - [Link 1]  https://35.226.125.59/red/public/staff/users/index.php
+
+6. Session Hijecking/Fixation
+  
+- [ ] Summary: 
+    - Vulnerability types: Blue website
+    - Tested in version: N/A
+    - Fixed in version: N/A
+  - [ ] Steps to recreate:Copy the session ID from one browser and use it with another browser to bypass login. In practice,an authenticated user would be needed in order to trip some other kind of attack to steal their cookie.
+
+  - [ ] Affected source code:
+    - [Link 1] https://35.226.125.59/blue/public/salesperson.php?id=1  
+
+## Assets
+Burp Suite Community Edition v1.7.33
+## Resources
+N/A
+## Notes
+N/A
+## License
+
+    Copyright 2018 Courtney
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at (http://www.apache.org/licenses/LICENSE-2.0)
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
