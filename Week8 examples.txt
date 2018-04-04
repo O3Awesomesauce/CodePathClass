@@ -1,0 +1,52 @@
+# Project 8 - Pentesting Live Targets
+
+Time spent: **20** hours spent in total
+
+> Objective: Identify vulnerabilities in three different versions of the Globitek website: blue, green, and red.
+
+The six possible exploits are:
+* Username Enumeration
+* Insecure Direct Object Reference (IDOR)
+* SQL Injection (SQLi)
+* Cross-Site Scripting (XSS)
+* Cross-Site Request Forgery (CSRF)
+* Session Hijacking/Fixation
+
+Each version of the site has been given two of the six vulnerabilities. (In other words, all six of the exploits should be assignable to one of the sites.)
+
+## Blue
+
+Vulnerability #1: SQL Injection
+
+(https://35.226.125.59/blue/public/salesperson.php?id=?) When logged into the public portion of the site, in the salesperson page, a SQL injection can be inputted into the "id=" portion of the URL. The SQL code "' OR SLEEP(10)=0--'" triggers a reaction proving an ability to exploit. 
+
+Vulnerability #2: Session Hijacking/Fixation
+
+(https://35.226.125.59/blue/public/salesperson.php?id=1 ) Copy the session ID from one browser and use it with another browser to bypass login. In practice,an authenticated user would be needed in order to trip some other kind of attack to steal their cookie.
+
+
+## Green
+
+Vulnerability #1: User Enumeration
+
+(https://35.226.125.59/green/public/staff/login.php) Logging into the the staff portion of the site inputting the incorrect username/password renders "Log in was unsuccessful." When inputting the correct username/incorrect password renders "Log in was unsuccessful." in bolded letters. The bolding of the letters tips off the hacker that the username was correct or that an account exists.
+
+Vulnerability #2: Cross Site Scripting
+
+(https://35.226.125.59/green/public/contact.php) Inputting XSS code into the feedback section of the public portion of the site allows for an expolit to pop up when the admin navigates to the feedback portion of the site. The XSS code used is "<script>alert('Courtney found the XSS!');</script>"
+
+
+## Red
+
+Vulnerability #1: Insecure Direct Object Reference
+
+(https://35.226.125.59/red/public/salesperson.php?id=10) When on the public facing side of the website in the salepeople's page, you can change the ID number to "id=10" and find unpublished data there. 
+
+Vulnerability #2: Cross Site Request Forgery
+
+(https://35.226.125.59/red/public/staff/users/index.php) The admin side of red doesn't require a CSRF token to add countries or people to the backend.So you need to make a form, that is hidden and can be triggered by a red admin.
+
+
+## Notes
+
+These are the links to where the vulnerabilities exist on the corrisponding website. Followed by a brief explination on how the exploit can be executed. 
